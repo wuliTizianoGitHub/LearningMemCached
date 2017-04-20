@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace LearningMemcached
 {
-    public static class MemcachedManager
+    public sealed class MemcachedManager
     {
         private static MemcachedClient client;
 
@@ -44,6 +44,24 @@ namespace LearningMemcached
             try
             {
                 client = new MemcachedClient("enyim.com/memcached");
+
+                /*MemcachedClientConfiguration config = new MemcachedClientConfiguration();
+               config.Servers.Add(new System.Net.IPEndPoint(IPAddress.Parse("127.0.0.1"), 11211));
+               config.Protocol = MemcachedProtocol.Binary;
+               config.Authentication.Type = typeof(PlainTextAuthenticator);
+               config.Authentication.Parameters["userName"] = "memcache";
+               config.Authentication.Parameters["password"] = "password";
+               MemClient = new MemcachedClient(config);*/
+                //MemcachedClientConfiguration config = new MemcachedClientConfiguration();
+                //config.Servers.Add(new IPEndPoint(IPAddress.Parse("127.0.0.1"), 11211));
+                //config.Servers.Add(new System.Net.IPEndPoint(IPAddress.Parse("127.0.0.1"), 11211));
+                //config.Protocol = MemcachedProtocol.Binary;
+                //config.Authentication.Type = typeof(PlainTextAuthenticator);
+                //config.Authentication.Parameters["userName"] = "username";
+                //config.Authentication.Parameters["password"] = "password";
+                //config.Authentication.Parameters["zone"] = "";
+
+                //client = new MemcachedClient(config);
             }
             catch (Exception ex)
             {
@@ -57,9 +75,9 @@ namespace LearningMemcached
         }
 
 
-        public static void Store(string Key, object Value, DateTime ExpiredAt)
+        public static void Store(string Key, object Value)
         {
-            client.Store(StoreMode.Set, Key, Value, ExpiredAt);
+            client.Store(StoreMode.Set, Key, Value);
         }
 
         public static T Get<T>(string Key)
@@ -120,7 +138,7 @@ namespace LearningMemcached
 
             return sb.ToString();
         }
-
+        
         /// <summary>
         /// 查询slabId
         /// </summary>

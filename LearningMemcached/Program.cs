@@ -14,7 +14,7 @@ namespace LearningMemcached
         {
             //MemcachedClient client = MemcachedManager.GetInstance();
             //client.Store(StoreMode.Set,"key1","value1");
-            MemcachedManager.Store("key1", "value1", DateTime.Now.AddDays(1));
+            MemcachedManager.Store("key2", "value2");
 
             string value = MemcachedManager.Get<string>("key1");
             List<string>  list = MemcachedManager.GetAllKeys("127.0.0.1",11211);
