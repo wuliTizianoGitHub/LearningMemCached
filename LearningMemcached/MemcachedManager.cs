@@ -45,8 +45,11 @@ namespace LearningMemcached
             {
                 client = new MemcachedClient("enyim.com/memcached");
 
+                //memcached配置
                 /*MemcachedClientConfiguration config = new MemcachedClientConfiguration();
+                 * 添加服务器
                config.Servers.Add(new System.Net.IPEndPoint(IPAddress.Parse("127.0.0.1"), 11211));
+
                config.Protocol = MemcachedProtocol.Binary;
                config.Authentication.Type = typeof(PlainTextAuthenticator);
                config.Authentication.Parameters["userName"] = "memcache";
